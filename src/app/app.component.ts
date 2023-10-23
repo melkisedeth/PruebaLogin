@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Form, FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-root',
@@ -6,5 +7,25 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'puebaLogin2';
+
+  loginForm : FormGroup;
+
+  submitted = false;
+  
+  
+  constructor(private formBuilder: FormBuilder,) {
+    
+    
+  }
+
+  ngOnInit(): void {
+    this.loginForm = this.formBuilder.group({
+      mail: ['', Validators.required],
+      password: ['', Validators.required],
+    });
+
+    
+  }
+  get f() { return this.loginForm.controls; }
+
 }
